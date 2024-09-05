@@ -1,16 +1,9 @@
 from flask import Flask
+from models.task import Task
 
 app = Flask(__name__)
 
-
-@app.route("/")
-def hello_world():
-    return "Hello world!"
-
-
-@app.route("/about")
-def about():
-    return "Página sobre"
+tasks = []
 
 
 if __name__ == "__main__":
