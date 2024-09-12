@@ -7,7 +7,7 @@ tasks = []
 
 
 def test_create_task():
-    new_task_data = {"title": "Nova tarefa", "description": "Descrição da nova tarefa"}
+    new_task_data = {"title": "Nova tarefa", "description": "Descrição a tarefa"}
     response = requests.post(f"{BASE_URL}/tasks", json=new_task_data)
     assert response.status_code == 200
     response_json = response.json()
@@ -47,9 +47,9 @@ def test_update_task():
         assert "message" in response_json
 
         # Nova requisição a tarefa especifica
-        # response = requests.get(f"{BASE_URL}/tasks/{task_id}")
-        # assert response.status_code == 200
-        # response_json = response.json()
-        # assert response_json["title"] == payload["title"]
-        # assert response_json["description"] == payload["description"]
-        # assert response_json["completed"] == payload["completed"]
+        response = requests.get(f"{BASE_URL}/tasks/{task_id}")
+        assert response.status_code == 200
+        response_json = response.json()
+        assert response_json["title"] == payload["title"]
+        assert response_json["description"] == payload["description"]
+        assert response_json["completed"] == payload["completed"]
